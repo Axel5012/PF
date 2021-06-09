@@ -13,5 +13,6 @@ firebase.initializeApp({
     projectId: "pgpf-a0273",
     storageBucket: "pgpf-a0273.appspot.com",
     messagingSenderId: "727191021596",
-    appId: "1:727191021596:web:1e58ecacb62010fd1a97d9"
+    appId: "1:727191021596:web:1e58ecacb62010fd1a97d9",
+    measurementId: "G-W4Q6L1R1SX"
 });
