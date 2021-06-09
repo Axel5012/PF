@@ -148,7 +148,7 @@ export async function
 guardaUsuario(evt, formData,
     id) {
     try {
-        evt.preventDefault();
+        /*evt.preventDefault();*/
         const pasatiempoId =
             getForánea(formData,
                 "pasatiempoId");
