@@ -50,8 +50,8 @@ function htmlLista(snap) {
   } else {
     html += /* html */
       `<li class="vacio">
-        -- No hay paquete
-        registrado para el usuario. --
+         -- No hay pasatiempos
+        registrados. --
       </li>`;
   }
   lista.innerHTML = html;
