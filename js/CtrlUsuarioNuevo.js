@@ -38,11 +38,22 @@ async function protege(usuario) {
 }
 
 /** @param {Event} evt */
-async function guarda(evt) {
+/**async function guarda(evt) {
   const formData =
     new FormData(forma);
   const id = getString(
     formData, "cue").trim();
   await guardaUsuario(evt,
-    formData, id);
+    formData, id);**/
+async function guarda(evt) {
+	evt.preventDefault();
+  const formData =
+    new FormData(forma);
+  const fecha1 = getString(formData, "fecha1").trim();
+  const fecha2 = getString(formData, "fecha2").trim();
+  const id = getString(
+    formData, "cue").trim();
+  await guardaUsuario(evt,
+    formData, id, fecha1, fecha2);
+}
 }
