@@ -8,10 +8,10 @@
  * servidor. */
 // @ts-ignore
 firebase.initializeApp({
-  apiKey: "AIzaSyCr-6Rbvsp7vM65boRcTxQUvcE8PlwC6cA",
-    authDomain: "pf3cv50.firebaseapp.com",
-    projectId: "pf3cv50",
-    storageBucket: "pf3cv50.appspot.com",
-    messagingSenderId: "1098534119081",
-    appId: "1:1098534119081:web:13eb85c4b3d1564fb66bb8"
+  apiKey: "AIzaSyBPKoDNoVZdBOstRzuScQUBhAtgxfDqSk4",
+    authDomain: "pgpf-a0273.firebaseapp.com",
+    projectId: "pgpf-a0273",
+    storageBucket: "pgpf-a0273.appspot.com",
+    messagingSenderId: "727191021596",
+    appId: "1:727191021596:web:1e58ecacb62010fd1a97d9"
 });
