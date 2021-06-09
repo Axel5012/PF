@@ -1,107 +1,48 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport"
-    content="width=device-width,
-       initial-scale=1.0">
-  <title>Agregar usuario</title>
-  <script
-    src="https://www.gstatic.com/firebasejs/8.5.0/firebase-app.js">
-    </script>
-  <script
-    src="https://www.gstatic.com/firebasejs/8.5.0/firebase-auth.js">
-    </script>
-  <script
-    src="https://www.gstatic.com/firebasejs/8.5.0/firebase-firestore.js">
-    </script>
-  <script
-    src="https://www.gstatic.com/firebasejs/8.5.0/firebase-storage.js">
-    </script>
-  <script src="js/init.js">
-  </script>
-  <script type="module"
-    src="cmp/mi-nav.js">
-    </script>
-  <script type="module"
-    src="cmp/mi-footer.js">
-    </script>
-  <script type="module"
-    src="cmp/mi-progreso.js">
-    </script>
-  <link rel="stylesheet"
-    href="css/estilos.css">
-</head>
-<body>
-  <form name="forma">
-    <mi-nav></mi-nav>
-    <header>
-      <h1>Agregar usuario </h1>
-      <div class="herramientas">
-        <a href="usuarios.html">
-          Cancelar</a>
-        <button type="submit">
-          Guardar
-        </button>
-      </div>
-    </header>
-    <p>
-      <label>Email
-        <input name="cue"
-          type="email" required>
-      </label>
-    </p>
-    <p>
-      <label>Foto de perfil
-        <input name="avatar"
-          type="file" required
-          accept=".png,.jpg,.jpeg,.gif">
-      </label>
-    </p>
-    <!--
-      Maneja una asociación a uno.
-    -->
-    <p>
-      <label>Fecha de llegada
-        <input name="fecha1"
-          type="date" required>
-      </label>
-    </p>
-    <p>
-      <label>Fecha de salida
-        <input name="fecha2"
-          type="date" required>
-      </label>
-    </p>
-    <p>
-      <label>
-        Paquete 
-          <select
-          name="pasatiempoId">
-          <option>
-            Cargando...
-          </option>
-        </select>
-      </label>
-    </p>
-    <!--
-      Maneja una asociación a
-      muchos.
-    -->
-    <fieldset>
-      <legend>Roles</legend>
-      <ul id="listaRoles"
-        class="checks">
-        <li>
-          <mi-progreso>
-          </mi-progreso>
-        </li>
-      </ul>
-    </fieldset>
-    <mi-footer></mi-footer>
-  </form>
-  <script type="module"
-    src="js/CtrlUsuarioNuevo.js">
-    </script>
-</body>
-</html>
+import {
+    getAuth
+} from "../lib/fabrica.js";
+import {
+    getString,
+    muestraError
+} from "../lib/util.js";
+import {
+    tieneRol
+} from "./seguridad.js";
+import {
+    checksRoles,
+    guardaUsuario,
+    selectPasatiempos
+} from "./usuarios.js";
+
+/** @type {HTMLFormElement} */
+const forma = document["forma"];
+/** @type {HTMLUListElement} */
+const listaRoles = document.
+querySelector("#listaRoles");
+
+getAuth().onAuthStateChanged(
+    protege, muestraError);
+
+/** @param {import(
+    "../lib/tiposFire.js").User}
+    usuario */
+async function protege(usuario) {
+    if (tieneRol(usuario, ["Administrador"])) {
+        forma.addEventListener(
+            "submit", guarda);
+        selectPasatiempos(
+            forma.pasatiempoId, "");
+        checksRoles(listaRoles, []);
+    }
+}
+
+/** @param {Event} evt */
+async function guarda(evt) {
+    const formData =
+        new FormData(forma);
+    const fecha1 = getString(formData, "fecha1").trim();
+    const fecha2 = getString(formData, "fecha2").trim();
+    const id = getString(formData, "cue").trim();
+    await guardaUsuario(evt,
+        formData, id);
+}
