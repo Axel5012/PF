@@ -15,7 +15,7 @@ import {
 
 const SIN_PASATIEMPO = /* html */
     `<option value="">
-    -- Sin Pasatiempo --
+    -- Sin Paquete --
   </option>`;
 
 const firestore = getFirestore();
@@ -155,16 +155,16 @@ guardaUsuario(evt, formData,
         const rolIds =
             formData.getAll("rolIds");
         const Fecha1 =
-            formData.getAll("Fecha1");
+            formData.getAll("fecha1");
         const Fecha2 =
-            formData.getAll("Fecha2");
+            formData.getAll("fecha2");
         await daoUsuario.
         doc(id).
         set({
             pasatiempoId,
             rolIds,
-            Fecha1,
-            Fecha2
+            fecha1,
+            fecha2
         });
         const avatar =
             formData.get("avatar");
