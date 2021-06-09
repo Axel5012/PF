@@ -133,7 +133,7 @@ async function
         `${cod(data.nombre)}`);
     }
   }
-  return "-- Sin paquete --";
+  return "-- Sin Pasatiempo --";
 }
 
 /** Recupera el html de los

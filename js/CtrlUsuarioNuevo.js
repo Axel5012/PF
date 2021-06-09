@@ -1,48 +1,48 @@
 import {
-    getAuth
+  getAuth
 } from "../lib/fabrica.js";
 import {
-    getString,
-    muestraError
+  getString,
+  muestraError
 } from "../lib/util.js";
 import {
-    tieneRol
+  tieneRol
 } from "./seguridad.js";
 import {
-    checksRoles,
-    guardaUsuario,
-    selectPasatiempos
+  checksRoles,
+  guardaUsuario,
+  selectPasatiempos
 } from "./usuarios.js";
 
 /** @type {HTMLFormElement} */
 const forma = document["forma"];
 /** @type {HTMLUListElement} */
 const listaRoles = document.
-querySelector("#listaRoles");
+  querySelector("#listaRoles");
 
 getAuth().onAuthStateChanged(
-    protege, muestraError);
+  protege, muestraError);
 
 /** @param {import(
     "../lib/tiposFire.js").User}
     usuario */
 async function protege(usuario) {
-    if (tieneRol(usuario, ["Administrador"])) {
-        forma.addEventListener(
-            "submit", guarda);
-        selectPasatiempos(
-            forma.pasatiempoId, "");
-        checksRoles(listaRoles, []);
-    }
+  if (tieneRol(usuario,
+    ["Administrador"])) {
+    forma.addEventListener(
+      "submit", guarda);
+    selectPasatiempos(
+      forma.pasatiempoId, "");
+    checksRoles(listaRoles, []);
+  }
 }
 
 /** @param {Event} evt */
 async function guarda(evt) {
-    const formData =
-        new FormData(forma);
-    const fecha1 = getString(formData, "fecha1").trim();
-    const fecha2 = getString(formData, "fecha2").trim();
-    const id = getString(formData, "cue").trim();
-    await guardaUsuario(evt,
-        formData, id);
+  const formData =
+    new FormData(forma);
+  const id = getString(
+    formData, "cue").trim();
+  await guardaUsuario(evt,
+    formData, id);
 }
