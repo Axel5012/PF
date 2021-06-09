@@ -13,5 +13,5 @@ firebase.initializeApp({
     projectId: "pf3cv50",
     storageBucket: "pf3cv50.appspot.com",
     messagingSenderId: "1098534119081",
-    appId: "1:1098534119081:web:f570023d3ee7c105b66bb8"
+    appId: "1:1098534119081:web:13eb85c4b3d1564fb66bb8"
 });
