@@ -1,25 +1,23 @@
 import {
-  getAuth
+  getAuth,
+  getFirestore
 } from "../lib/fabrica.js";
 import {
   getString,
   muestraError
 } from "../lib/util.js";
 import {
+  muestraPaquetes
+} from "./navegacion.js";
+import {
   tieneRol
 } from "./seguridad.js";
-import {
-  checksRoles,
-  guardaUsuario,
-  selectPaquetes
-} from "./usuarios.js";
 
+const daoPaquete =
+  getFirestore().
+    collection("Paquete");
 /** @type {HTMLFormElement} */
 const forma = document["forma"];
-/** @type {HTMLUListElement} */
-const listaRoles = document.
-  querySelector("#listaRoles");
-
 getAuth().onAuthStateChanged(
   protege, muestraError);
 
@@ -31,18 +29,28 @@ async function protege(usuario) {
     ["Administrador"])) {
     forma.addEventListener(
       "submit", guarda);
-    selectPaquetes(
-      forma.paqueteId, "");
-    checksRoles(listaRoles, []);
   }
 }
 
 /** @param {Event} evt */
 async function guarda(evt) {
-  const formData =
-    new FormData(forma);
-  const id = getString(
-    formData, "cue").trim();
-  await guardaUsuario(evt,
-    formData, id);
+  try {
+    evt.preventDefault();
+    const formData =
+      new FormData(forma);
+    const nombre = getString(
+      formData, "nombre").trim();
+    /**
+     * @type {
+        import("./tipos.js").
+                Paquete} */
+    const modelo = {
+      nombre
+    };
+    await daoPaquete.
+      add(modelo);
+    muestraPaquetes();
+  } catch (e) {
+    muestraError(e);
+  }
 }

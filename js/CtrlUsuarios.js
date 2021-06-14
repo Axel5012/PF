@@ -19,8 +19,8 @@ const lista = document.
 const firestore = getFirestore();
 const daoRol = firestore.
   collection("Rol");
-const daoPasatiempo = firestore.
-  collection("Pasatiempo");
+const daoPaquete = firestore.
+  collection("Paquete");
 const daoUsuario = firestore.
   collection("Usuario");
 
@@ -81,9 +81,9 @@ async function htmlFila(doc) {
   const data = doc.data();
   const img = cod(
     await urlStorage(doc.id));
-  const pasatiempo =
-    await buscaPasatiempo(
-      data.pasatiempoId);
+  const paquete =
+    await buscaPaquete(
+      data.paqueteId);
   const roles =
     await buscaRoles(data.rolIds);
   const parámetros =
@@ -105,7 +105,7 @@ async function htmlFila(doc) {
           </strong>
           <span
               class="secundario">
-            ${pasatiempo}<br>
+            ${paquete}<br>
             ${roles}
           </span>
         </span>
@@ -114,20 +114,20 @@ async function htmlFila(doc) {
 }
 
 /** Recupera el html de un
- * pasatiempo en base a su id.
+ * paquete en base a su id.
  * @param {string} id */
 async function
-  buscaPasatiempo(id) {
+  buscaPaquete(id) {
   if (id) {
     const doc =
-      await daoPasatiempo.
+      await daoPaquete.
         doc(id).
         get();
     if (doc.exists) {
       /**
        * @type {import(
           "./tipos.js").
-            Pasatiempo} */
+            Paquete} */
       const data = doc.data();
       return (/* html */
         `${cod(data.nombre)}`);
