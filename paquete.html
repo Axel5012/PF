@@ -5,7 +5,7 @@
   <meta name="viewport"
     content="width=device-width,
        initial-scale=1.0">
-  <title>Usuario</title>
+  <title>Paquetes del hotel</title>
   <script
     src="https://www.gstatic.com/firebasejs/8.5.0/firebase-app.js">
     </script>
@@ -15,9 +15,6 @@
   <script
     src="https://www.gstatic.com/firebasejs/8.5.0/firebase-firestore.js">
     </script>
-  <script
-    src="https://www.gstatic.com/firebasejs/8.5.0/firebase-storage.js">
-    </script>
   <script src="js/init.js">
   </script>
   <script type="module"
@@ -26,9 +23,6 @@
   <script type="module"
     src="cmp/mi-footer.js">
     </script>
-  <script type="module"
-    src="cmp/mi-progreso.js">
-    </script>
   <link rel="stylesheet"
     href="css/estilos.css">
 </head>
@@ -36,15 +30,9 @@
   <form name="forma">
     <mi-nav></mi-nav>
     <header>
-      <h1>
-        <output name="cue">
-          Usuario
-          <mi-progreso>
-          </mi-progreso>
-        </output>
-      </h1>
+      <h1>Paquetes del hotel</h1>
       <div class="herramientas">
-        <a href="usuarios.html">
+        <a href="paquetes.html">
           Cancelar</a>
         <button>Guardar</button>
         <button name="eliminar"
@@ -53,48 +41,18 @@
         </button>
       </div>
     </header>
-    <figure id="figure">
-      <img alt="Falta el Avatar">
-    </figure>
-    <p>
-      <label>Foto de perfil
-        <input name="avatar"
-          type="file"
-          accept=".png,.jpg,.jpeg,.gif">
-      </label>
-    </p>
-    <!--
-      Maneja una asociación a uno.
-    -->
     <p>
       <label>
-        Paquete 
-        <select
-          name="paqueteId">
-          <option>
-            Cargando…
-          </option>
-        </select>
+        Nombre
+        <input name="nombre"
+          type="text" required
+          value="Cargando…">
       </label>
     </p>
-    <!--
-      Maneja una asociación a
-      muchos.
-    -->
-    <fieldset>
-      <legend>Roles</legend>
-      <ul id="listaRoles"
-        class="checks">
-        <li>
-          <mi-progreso>
-          </mi-progreso>
-        </li>
-      </ul>
-    </fieldset>
     <mi-footer></mi-footer>
   </form>
   <script type="module"
-    src="js/CtrlUsuario.js">
+    src="js/CtrlPaquete.js">
     </script>
 </body>
 </html>
