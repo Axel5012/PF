@@ -141,24 +141,26 @@ export function
 /**
  * @param {Event} evt
  * @param {FormData} formData
- * @param {string} id 
- * @param {Date} fecha1
- * @param {Date} fecha2
- * @param {Number} num */
+ * @param {string} id  */
 export async function
-  guardaUsuario(evt, formData, id, fecha1, fecha2, num) {
+  guardaUsuario(evt, formData,
+    id) {
   try {
     evt.preventDefault();
-    const paqueteId = getForánea(formData, "paqueteId");
-    const rolIds = formData.getAll("rolIds");
+    const paqueteId =
+      getForánea(formData,
+        "paqueteId");
+    const rolIds =
+      formData.getAll("rolIds");
     await daoUsuario.
-      doc(id, fecha1, fecha2, num).
+      doc(id).
       set({
         paqueteId,
         rolIds
       });
-    const avatar = formData.get("avatar");
-    await subeStorage(id, fecha1, fecha2, num, avatar);
+    const avatar =
+      formData.get("avatar");
+    await subeStorage(id, avatar);
     muestraUsuarios();
   } catch (e) {
     muestraError(e);

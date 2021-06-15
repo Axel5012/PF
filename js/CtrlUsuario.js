@@ -50,12 +50,11 @@ async function protege(usuario) {
 async function busca() {
   try {
     const doc = await daoUsuario.
-    doc(id, fecha1, fecha2, num).
-    get();
+      doc(id).
+      get();
     if (doc.exists) {
       const data = doc.data();
       forma.cue.value = id || "";
-      forma.num.value = num || "";
       img.src =
         await urlStorage(id);
       selectPaquetes(
