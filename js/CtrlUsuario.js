@@ -27,14 +27,19 @@ const params =
 const id = params.get("id");
 const daoUsuario = getFirestore().
   collection("Usuario");
+/** @type {HTMLFormElement} */
 const forma = document["forma"];
 const img = document.
   querySelector("img");
+/** @type {HTMLUListElement} */
 const listaRoles = document.
   querySelector("#listaRoles");
 getAuth().onAuthStateChanged(
   protege, muestraError);
 
+/** @param {import(
+    "../lib/tiposFire.js").User}
+    usuario */
 async function protege(usuario) {
   if (tieneRol(usuario,
     ["Administrador"])) {
@@ -44,12 +49,11 @@ async function protege(usuario) {
 
 async function busca() {
   try {
-    const doc = await daoUsuario.
-      doc(id).
-      get();
+    const doc = await daoUsuario.doc(id).doc(fecha1).doc(fecha2).doc(num).get();
     if (doc.exists) {
       const data = doc.data();
       forma.cue.value = id || "";
+      forma.num.value = num || "";
       img.src =
         await urlStorage(id);
       selectPaquetes(
