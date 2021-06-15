@@ -24,7 +24,10 @@ const daoPaquete = firestore.
 const daoUsuario = firestore.
   collection("Usuario");
 
-
+/**
+ * @param {
+    HTMLSelectElement} select
+ * @param {string} valor */
 export function
   selectPaquetes(select,
     valor) {
@@ -47,13 +50,19 @@ export function
     );
 }
 
-
+/**
+ * @param {
+  import("../lib/tiposFire.js").
+  DocumentSnapshot} doc
+ * @param {string} valor */
 function
   htmlPaquete(doc, valor) {
   const selected =
     doc.id === valor ?
       "selected" : "";
-  
+  /**
+   * @type {import("./tipos.js").
+                  Paquete} */
   const data = doc.data();
   return (/* html */
     `<option
@@ -63,6 +72,9 @@ function
     </option>`);
 }
 
+/**
+ * @param {HTMLElement} elemento
+ * @param {string[]} valor */
 export function
   checksRoles(elemento, valor) {
   const set =
@@ -91,8 +103,16 @@ export function
   );
 }
 
+/**
+ * @param {
+    import("../lib/tiposFire.js").
+    DocumentSnapshot} doc
+ * @param {Set<string>} set */
 export function
   checkRol(doc, set) {
+  /**
+   * @type {
+      import("./tipos.js").Rol} */
   const data = doc.data();
   const checked =
     set.has(doc.id) ?
@@ -118,24 +138,29 @@ export function
     </li>`);
 }
 
+/**
+ * @param {Event} evt
+ * @param {FormData} formData
+ * @param {string} id 
+ * @param {Date} fecha1
+ * @param {Date} fecha2
+ * @param {Number} num */
 export async function
-  guardaUsuario(evt, formData,
-    id) {
+  guardaUsuario(evt, formData, id, fecha1, fecha2, num) {
   try {
     evt.preventDefault();
-    const paqueteId =
-      getForánea(formData,
-        "paqueteId");
-    const rolIds =
-      formData.getAll("rolIds");
+    const paqueteId = getForánea(formData, "paqueteId");
+    const rolIds = formData.getAll("rolIds");
     await daoUsuario.
       doc(id).
+      doc(fecha1).
+      doc(fecha2).
+      doc(num).
       set({
         paqueteId,
         rolIds
       });
-    const avatar =
-      formData.get("avatar");
+    const avatar = formData.get("avatar");
     await subeStorage(id, avatar);
     muestraUsuarios();
   } catch (e) {

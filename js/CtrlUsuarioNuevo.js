@@ -14,11 +14,18 @@ import {
   selectPaquetes
 } from "./usuarios.js";
 
+/** @type {HTMLFormElement} */
 const forma = document["forma"];
-const listaRoles = document.querySelector("#listaRoles");
+/** @type {HTMLUListElement} */
+const listaRoles = document.
+  querySelector("#listaRoles");
 
-getAuth().onAuthStateChanged(protege, muestraError);
+getAuth().onAuthStateChanged(
+  protege, muestraError);
 
+/** @param {import(
+    "../lib/tiposFire.js").User}
+    usuario */
 async function protege(usuario) {
   if (tieneRol(usuario,
     ["Administrador"])) {
@@ -30,15 +37,13 @@ async function protege(usuario) {
   }
 }
 
+/** @param {Event} evt */
 async function guarda(evt) {
-  try{
-  const formData = new FormData(forma);
+  const formData =
+    new FormData(forma);
+  const id = getString(formData, "cue").trim();
   const fecha1 = getString(formData, "fecha1").trim();
   const fecha2 = getString(formData, "fecha2").trim();
   const num = getString(formData, "num").trim();
-  const id = getString(formData, "cue").trim();
-  await guardaUsuario(evt,formData, id);
-  await guardaUsuario(evt,formData, fecha1);
-  await guardaUsuario(evt,formData, fecha2);
-  await guardaUsuario(evt,formData, num);
-}
+  await guardaUsuario(evt,formData, id, fecha1, fecha2, num);
+  }
