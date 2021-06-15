@@ -49,7 +49,9 @@ async function protege(usuario) {
 
 async function busca() {
   try {
-    const doc = await daoUsuario.doc(id).doc(fecha1).doc(fecha2).doc(num).get();
+    const doc = await daoUsuario.
+    doc(id, fecha1, fecha2, num).
+    get();
     if (doc.exists) {
       const data = doc.data();
       forma.cue.value = id || "";
