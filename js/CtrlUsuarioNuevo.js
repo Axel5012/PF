@@ -31,10 +31,14 @@ async function protege(usuario) {
 }
 
 async function guarda(evt) {
-  const formData =
-    new FormData(forma);
-  const id = getString(
-    formData, "cue").trim();
-  await guardaUsuario(evt,
-    formData, id);
+  try{
+  const formData = new FormData(forma);
+  const fecha1 = getString(formData, "fecha1").trim();
+  const fecha2 = getString(formData, "fecha2").trim();
+  const num = getString(formData, "num").trim();
+  const id = getString(formData, "cue").trim();
+  await guardaUsuario(evt,formData, id);
+  await guardaUsuario(evt,formData, fecha1);
+  await guardaUsuario(evt,formData, fecha2);
+  await guardaUsuario(evt,formData, num);
 }
