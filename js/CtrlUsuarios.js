@@ -13,7 +13,6 @@ import {
   tieneRol
 } from "./seguridad.js";
 
-/** @type {HTMLUListElement} */
 const lista = document.
   querySelector("#lista");
 const firestore = getFirestore();
@@ -24,12 +23,8 @@ const daoPaquete = firestore.
 const daoUsuario = firestore.
   collection("Usuario");
 
-getAuth().onAuthStateChanged(
-  protege, muestraError);
+getAuth().onAuthStateChanged(protege, muestraError);
 
-/** @param {import(
-    "../lib/tiposFire.js").User}
-    usuario */
 async function protege(usuario) {
   if (tieneRol(usuario,
     ["Administrador"])) {
@@ -42,23 +37,14 @@ function consulta() {
     htmlLista, errConsulta);
 }
 
-/**
- * @param {import(
-    "../lib/tiposFire.js").
-    QuerySnapshot} snap */
 async function htmlLista(snap) {
   let html = "";
   if (snap.size > 0) {
-    /** @type {
-          Promise<string>[]} */
     let usuarios = [];
     snap.forEach(doc => usuarios.
       push(htmlFila(doc)));
     const htmlFilas =
       await Promise.all(usuarios);
-    /* Junta el todos los
-     * elementos del arreglo en
-     * una cadena. */
     html += htmlFilas.join("");
   } else {
     html += /* html */
@@ -70,14 +56,8 @@ async function htmlLista(snap) {
   lista.innerHTML = html;
 }
 
-/**
- * @param {import(
-    "../lib/tiposFire.js").
-    DocumentSnapshot} doc */
+
 async function htmlFila(doc) {
-  /**
-   * @type {import("./tipos.js").
-                      Usuario} */
   const data = doc.data();
   const img = cod(
     await urlStorage(doc.id));
@@ -113,9 +93,6 @@ async function htmlFila(doc) {
     </li>`);
 }
 
-/** Recupera el html de un
- * paquete en base a su id.
- * @param {string} id */
 async function
   buscaPaquete(id) {
   if (id) {
@@ -124,10 +101,6 @@ async function
         doc(id).
         get();
     if (doc.exists) {
-      /**
-       * @type {import(
-          "./tipos.js").
-            Paquete} */
       const data = doc.data();
       return (/* html */
         `${cod(data.nombre)}`);
@@ -136,9 +109,7 @@ async function
   return "-- Sin Paquete --";
 }
 
-/** Recupera el html de los
- * roles en base a sus id
- * @param {string[]} ids */
+
 async function buscaRoles(ids) {
   let html = "";
   if (ids && ids.length > 0) {
@@ -146,9 +117,6 @@ async function buscaRoles(ids) {
       const doc = await daoRol.
         doc(id).
         get();
-      /**
-       * @type {
-      import("./tipos.js").Rol} */
       const data = doc.data();
       html += /* html */
         `<em>${cod(doc.id)}</em>
@@ -162,7 +130,6 @@ async function buscaRoles(ids) {
   }
 }
 
-/** @param {Error} e */
 function errConsulta(e) {
   muestraError(e);
   consulta();

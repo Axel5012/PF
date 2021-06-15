@@ -1,12 +1,3 @@
-/*  Inicializa Firebase con la
- * configuración del proyecto.
- * Revisa la configuración en tu
- * servidor de Firebase y cópiala
- * aquí sustituyendo los
- * asteriscos. Los campos deben
- * quedar igual que en tu
- * servidor. */
-// @ts-ignore
 firebase.initializeApp({
   apiKey: "AIzaSyBckG4jfWVU1_0Y0j9-dRl2xD9s_MiABhs",
     authDomain: "proyectofinal-336c8.firebaseapp.com",

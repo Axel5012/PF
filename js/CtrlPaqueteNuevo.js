@@ -16,14 +16,11 @@ import {
 const daoPaquete =
   getFirestore().
     collection("Paquete");
-/** @type {HTMLFormElement} */
 const forma = document["forma"];
 getAuth().onAuthStateChanged(
   protege, muestraError);
 
-/** @param {import(
-    "../lib/tiposFire.js").User}
-    usuario */
+
 async function protege(usuario) {
   if (tieneRol(usuario,
     ["Administrador"])) {
@@ -32,7 +29,6 @@ async function protege(usuario) {
   }
 }
 
-/** @param {Event} evt */
 async function guarda(evt) {
   try {
     evt.preventDefault();
@@ -40,10 +36,6 @@ async function guarda(evt) {
       new FormData(forma);
     const nombre = getString(
       formData, "nombre").trim();
-    /**
-     * @type {
-        import("./tipos.js").
-                Paquete} */
     const modelo = {
       nombre
     };

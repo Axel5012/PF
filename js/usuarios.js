@@ -24,10 +24,7 @@ const daoPaquete = firestore.
 const daoUsuario = firestore.
   collection("Usuario");
 
-/**
- * @param {
-    HTMLSelectElement} select
- * @param {string} valor */
+
 export function
   selectPaquetes(select,
     valor) {
@@ -50,19 +47,13 @@ export function
     );
 }
 
-/**
- * @param {
-  import("../lib/tiposFire.js").
-  DocumentSnapshot} doc
- * @param {string} valor */
+
 function
   htmlPaquete(doc, valor) {
   const selected =
     doc.id === valor ?
       "selected" : "";
-  /**
-   * @type {import("./tipos.js").
-                  Paquete} */
+  
   const data = doc.data();
   return (/* html */
     `<option
@@ -72,9 +63,6 @@ function
     </option>`);
 }
 
-/**
- * @param {HTMLElement} elemento
- * @param {string[]} valor */
 export function
   checksRoles(elemento, valor) {
   const set =
@@ -103,16 +91,8 @@ export function
   );
 }
 
-/**
- * @param {
-    import("../lib/tiposFire.js").
-    DocumentSnapshot} doc
- * @param {Set<string>} set */
 export function
   checkRol(doc, set) {
-  /**
-   * @type {
-      import("./tipos.js").Rol} */
   const data = doc.data();
   const checked =
     set.has(doc.id) ?
@@ -138,10 +118,6 @@ export function
     </li>`);
 }
 
-/**
- * @param {Event} evt
- * @param {FormData} formData
- * @param {string} id  */
 export async function
   guardaUsuario(evt, formData,
     id) {

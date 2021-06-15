@@ -10,7 +10,6 @@ import {
   tieneRol
 } from "./seguridad.js";
 
-/** @type {HTMLUListElement} */
 const lista = document.
   querySelector("#lista");
 const daoPaquete =
@@ -20,10 +19,6 @@ const daoPaquete =
 getAuth().
   onAuthStateChanged(
     protege, muestraError);
-
-/** @param {import(
-    "../lib/tiposFire.js").User}
-    usuario */
 async function protege(usuario) {
   if (tieneRol(usuario,
     ["Administrador"])) {
@@ -38,10 +33,7 @@ function consulta() {
       htmlLista, errConsulta);
 }
 
-/**
- * @param {import(
-    "../lib/tiposFire.js").
-    QuerySnapshot} snap */
+
 function htmlLista(snap) {
   let html = "";
   if (snap.size > 0) {
@@ -57,14 +49,8 @@ function htmlLista(snap) {
   lista.innerHTML = html;
 }
 
-/**
- * @param {import(
-    "../lib/tiposFire.js").
-    DocumentSnapshot} doc */
+
 function htmlFila(doc) {
-  /**
-   * @type {import("./tipos.js").
-                  Paquete} */
   const data = doc.data();
   const nombre = cod(data.nombre);
   const parámetros =
@@ -81,7 +67,6 @@ function htmlFila(doc) {
     </li>`);
 }
 
-/** @param {Error} e */
 function errConsulta(e) {
   muestraError(e);
   consulta();
