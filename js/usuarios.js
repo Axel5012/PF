@@ -158,7 +158,7 @@ export async function
         rolIds
       });
     const avatar = formData.get("avatar");
-    await subeStorage(id, avatar);
+    await subeStorage(id, fecha1, fecha2, num, avatar);
     muestraUsuarios();
   } catch (e) {
     muestraError(e);
